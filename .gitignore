@@ -1,0 +1,64 @@
+# .gitignore file
+
+# Ignore Emacs files
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+auto-save-list
+tramp
+.\#*
+
+# Also ignore Emacs org-mode files
+.org-id-locations
+*_archive
+
+# Ignore vim files
+.*.sw[a-z]
+*.un~
+Session.vim
+.netrwhist
+
+# Ignore a bunch of Windows files
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file (more Windows files)
+Desktop.ini
+
+# Recycle Bin used on file shares (yet more Windows files)
+$RECYCLE.BIN/
+
+# Ignore config files and backup files in Linux
+.*
+!.gitignore
+*~
+
+# Ignore Mac OS X system files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+# Ignore Mac OS X thumbnails
+._*
+
+# Ignore Mac OS X files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Ignore Mercurial files
+/.hg/*
+*/.hg/*
+.hgignore
+
+# Ignore CVS files
+/CVS/*
+*/CVS/*
+.cvsignore
+*/.cvsignore
+
+# Ignore SVN files
+.svn/
