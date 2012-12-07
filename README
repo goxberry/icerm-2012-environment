@@ -1,0 +1,24 @@
+Files specifying computational environment for demonstration at ICERM 2012:
+Reproducibility for Computational and Experimental Mathematics.
+
+Requirements:
+- VirtualBox 4.2.x: http://www.virtualbox.org/wiki/Downloads
+- Vagrant 1.0.5: http://downloads.vagrantup.com/tags/v1.0.5
+- Git Bash Shell (Windows only)
+
+Upon first start, run "./bootstrap.sh" within repo.
+
+To log in:
+User name: vagrant
+Password: vagrant
+
+Relevant commands (on local machine, not in VM):
+"vagrant up" (brings up machine if not already booted up)
+"vagrant halt" (shuts down machine if not shut down)
+"vagrant provision" (updates configuration if configuration files change)
+"vagrant suspend" (suspends VM)
+"vagrant resume" (resumes VM)
+"vagrant destroy" (destroys all VM files, but not configuration files)
+
+NOTE: If VM destroyed using "vagrant destroy", can rebuild VM using
+"vagrant up".
