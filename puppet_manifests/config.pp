@@ -56,10 +56,10 @@ exec { 'apt-get update':
 # Remaining packages are personal preference.
 apt::force { ['xorg', 'xfce4', 'xfce4-terminal', 'xfce4-clipman', 'firefox',
  'gdm', 'build-essential', 'g++', 'python', 'scons', 'libboost-all-dev',
- 'subversion', 'python-dev', 'ipython',
- 'ipython-notebook', 'ipython-qtconsole', 'git', 'emacs', 'git-svn',
-  'gfortran', 'python-pip', 'libblas-dev',  'liblapack-dev',
-  'puppet', 'lynx', 'cython', 'python-nose', 'python-pudb' ] :
+ 'subversion', 'python-dev', 'ipython', 'ipython-notebook',
+ 'ipython-qtconsole', 'git', 'emacs', 'vim', 'git-svn', 'gfortran',
+  'python-pip', 'libblas-dev',  'liblapack-dev', 'puppet',
+   'cython', 'python-nose', 'python-pudb', 'python-matplotlib' ] :
   release => 'precise',
   require => Apt::Source['precise']
   }
@@ -83,4 +83,42 @@ package {'scipy':
                Apt::Force['python-nose'],
                Apt::Force['cython'],
                Package['numpy'] ]
+  }
+
+# Python interface to Linda Petzold's DAE solver DASSL 
+vcsrepo { '/usr/local/PyDAS' :
+  ensure   => present,
+  provider => git,
+  source   => 'https://github.com/jwallen/PyDAS.git',
+  revision => 'HEAD',
+  require  => [ Apt::Force['git'],
+                Package['numpy'],
+                Package['scipy'],
+                Apt::Force['cython'],
+                Apt::Force['gfortran'] ]
+  }
+
+# Command to build cleanly PyDAS, which does not have the infrastructure
+# to use pip.
+exec {'make-PyDAS' :
+  cwd => '/usr/local/PyDAS',
+  command => '/usr/bin/make clean && \
+  /usr/bin/python setup.py clean --all && \
+  /usr/bin/make F77=/usr/bin/gfortran && \
+  /usr/bin/python setup.py install',
+  require => Vcsrepo['/usr/local/PyDAS'],
+  }
+
+# Download the ICERM 2012 Reproducibility Workshop example
+# into the user home directory
+vcsrepo { '/home/vagrant/icerm-example' :
+  ensure => present,
+  provider => git,
+  source => 'https://github.com/goxberry/icerm-2012-environment.git',
+  revison => 'HEAD',
+  require => [ Apt::Force['git'],
+               Package['numpy'],
+               Package['scipy'],
+               Vcsrepo['/usr/local/PyDAS'],
+               Exec['make-PyDAS'] ]
   }
