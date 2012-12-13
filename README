@@ -14,7 +14,7 @@ Password: vagrant
 
 To see example, look at "/home/vagrant/icerm-example/Robertson.ipynb" and
 "/home/vagrant/icerm-example/Robertson.py"; the repository
-https://github.com/goxberry/icerm-2012-example should be automatically cloned
+"https://github.com/goxberry/icerm-2012-example" should be automatically cloned
 to "/home/vagrant/icerm-example". The Python source can be examined in any
 text editor or IDE; the IPython notebook can be examined by calling
 "ipython notebook --script" within the working directory
