@@ -119,7 +119,7 @@ exec {'make-PyDAS' :
 vcsrepo { '/home/vagrant/icerm-example' :
   ensure => present,
   provider => git,
-  source => 'https://github.com/goxberry/icerm-2012-environment.git',
+  source => 'https://github.com/goxberry/icerm-2012-example.git',
   revision => 'HEAD',
   require => [ Apt::Force['git'],
                Package['numpy'],
