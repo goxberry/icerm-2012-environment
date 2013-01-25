@@ -27,6 +27,11 @@ file { '/etc/apt/sources.list.d':
   ensure => present,
   }
 
+file { '/etc/resolv.conf':
+  ensure => present,
+  content => "domain example.com",
+  }
+
 # Include the Precise Pangolin Ubuntu 12.04 LTS sources list,
 # and make it a high priority so that it is the default
 # sources list.
@@ -61,7 +66,7 @@ apt::force { ['xorg', 'xfce4', 'xfce4-terminal', 'xfce4-clipman', 'firefox',
   'python-pip', 'libblas-dev',  'liblapack-dev', 'puppet',
    'cython', 'python-nose', 'python-pudb', 'python-matplotlib' ] :
   release => 'precise',
-  require => Apt::Source['precise']
+  require => [ Apt::Source['precise'], Exec['apt-get update'] ],
   }
 
 # Install latest stable NumPy
@@ -115,7 +120,7 @@ vcsrepo { '/home/vagrant/icerm-example' :
   ensure => present,
   provider => git,
   source => 'https://github.com/goxberry/icerm-2012-environment.git',
-  revison => 'HEAD',
+  revision => 'HEAD',
   require => [ Apt::Force['git'],
                Package['numpy'],
                Package['scipy'],
