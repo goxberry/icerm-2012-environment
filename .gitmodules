@@ -1,0 +1,9 @@
+[submodule "puppet_modules/apt"]
+	path = puppet_modules/apt
+	url = https://github.com/puppetlabs/puppetlabs-apt
+[submodule "puppet_modules/stdlib"]
+	path = puppet_modules/stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib
+[submodule "puppet_modules/vcsrepo"]
+	path = puppet_modules/vcsrepo
+	url = https://github.com/puppetlabs/puppetlabs-vcsrepo
