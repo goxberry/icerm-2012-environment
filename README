@@ -12,6 +12,9 @@ To log in:
 User name: vagrant
 Password: vagrant
 
+To start a graphical interface (if one does not come up; on first boot, there
+will be a text prompt after login), type "startx" at the prompt.
+
 To see example, look at "/home/vagrant/icerm-example/Robertson.ipynb" and
 "/home/vagrant/icerm-example/Robertson.py"; the repository
 "https://github.com/goxberry/icerm-2012-example" should be automatically cloned
